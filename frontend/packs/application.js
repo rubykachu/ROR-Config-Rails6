@@ -1,3 +1,3 @@
-import "./application.css";
+import "global";
 
-console.log("Hello World from Webpacker1");
+console.log("Hello World from Webpacker");
