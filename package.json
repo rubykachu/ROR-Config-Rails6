@@ -3,7 +3,10 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
-    "normalize.css": "^7.0.0"
+    "normalize.css": "^7.0.0",
+    "bootstrap": ">=4.1.2",
+    "jquery": "^3.0",
+    "popper.js": "^1.14.3"
   },
   "scripts": {
     "lint-staged": "$(yarn bin)/lint-staged"
@@ -41,6 +44,7 @@
     "eslint-plugin-prettier": "^2.3.1",
     "lint-staged": "^4.2.3",
     "pre-commit": "^1.2.2",
-    "prettier": "^1.7.3"
+    "prettier": "^1.7.3",
+    "autoprefixer": "^7.2.5"
   }
 }

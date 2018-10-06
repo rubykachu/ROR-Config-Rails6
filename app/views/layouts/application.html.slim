@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Todo App
+    = csrf_meta_tags
+    = stylesheet_pack_tag 'application'
+    = javascript_pack_tag 'application'
+  body
+    = yield

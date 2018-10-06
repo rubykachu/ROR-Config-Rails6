@@ -1,3 +1,2 @@
 import "global";
-
-console.log("Hello World from Webpacker");
+import "components/todo/todo";
