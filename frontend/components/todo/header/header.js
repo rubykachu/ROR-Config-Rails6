@@ -1,5 +1,5 @@
 import "./header.css";
-import { appendTodoItem } from "components/todo/main/main";
+import { appendTodoItem } from "components/todo/main/function";
 
 $(document).ready(function() {
   const $input = $(".js-input-new-todo");

@@ -1,38 +1,31 @@
 import "./main.css";
-
-function appendTodoItem(item) {
-  $('.js-todo-list').append(todoItem(item))
-}
-
-function todoItem(item) {
-  return `<li data-id="${item.id}">
-    <div class="view">
-      <input class="toggle js-toggle-item" type="checkbox">
-      <label class="js-label-item" data="${item.status}">${item.content}</label>
-      <button class="destroy js-destroy-item"></button>
-    </div>
-    <input class="edit js-edit-item" value="${item.content}">
-  </li>`;
-}
-
-function updateTodo(value) {
-  $.ajax({
-    'type': 'PUT'
-  });
-}
+import * as Fn from "./function";
 
 $(document).ready(function() {
-  $(document).on('dblclick', '.js-label-item', function() {
-    $(this).closest('li').addClass('editing');
+  $(document).on("dblclick", ".js-label-item", function() {
+    $(this).closest("li").addClass("editing");
 
-  }).on('focusout', '.js-edit-item', function() {
-    let $parent = $(this).parent('li'),
-        value = $(this).val();
+  }).on("change", ".js-edit-item", function() {
+    let $parent = $(this).parent("li"),
+        value = $(this).val(),
+        url = $parent.data("url");
 
-    $parent.removeClass('editing');
-    $parent.find('.js-label-item').html(value);
+    $parent.removeClass("editing");
+    $parent.find(".js-label-item").html(value);
+    Fn.updateTodo(value, url);
+
+  }).on("click", ".js-destroy-item", function() {
+    let $parent = $(this).closest("li"),
+        url = $parent.data("url");
+    Fn.deleteTodo(url).done(function() {
+      $parent.remove();
+    });
+
+  }).on("click", ".js-toggle-status", function() {
+    let $parent = $(this).closest("li"),
+        url = $parent.data("url-status");
+    Fn.updateCompletedTodo(url).done(function() {
+      $parent.toggleClass('completed');
+    });
   });
-
 });
-
-export { appendTodoItem }
