@@ -1,0 +1,6 @@
+li data-id="#{item.id}"
+  .view
+    input.toggle.js-toggle-item type="checkbox"
+    = label_tag nil, item.content, class: 'js-label-item', data: { status: item.status }
+    button.destroy.js-destroy-item
+  = text_field_tag :item, item.content, class: 'edit js-edit-item'

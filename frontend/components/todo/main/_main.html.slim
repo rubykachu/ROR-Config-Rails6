@@ -1,4 +1,5 @@
 section#main
   input#toggle-all type="checkbox"
   label for="toggle-all"  Mark all as complete
-  ul#todo-list
+  ul#todo-list.js-todo-list
+    = render partial: 'components/todo/main/item', collection: todos

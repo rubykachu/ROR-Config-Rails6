@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root to: 'todo#index'
+  root to: 'todos#index'
+  resources :todos
 end

@@ -1,3 +1,8 @@
 header#header
   h1 Ruby todos
-  input#new-todo autofocus="" placeholder=("What needs to be done?")
+  = form_with model: todo, class: 'js-form-new-todo' do |f|
+    = f.text_field :content,
+                   id: 'new-todo',
+                   class: 'js-input-new-todo',
+                   autofocus: 'autofocus',
+                   placeholder: 'What needs to be done?'
