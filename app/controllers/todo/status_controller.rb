@@ -1,7 +1,7 @@
 class Todo::StatusController < ApplicationController
   def update
     batch_update_status
-    export_response
+    export_response(@todos.reload.as_json)
   end
 
   def destroy
@@ -12,8 +12,9 @@ class Todo::StatusController < ApplicationController
   private
 
   def batch_update_status
+    @todos = Todo.where(id: params[:id])
     ActiveRecord::Base.transaction do
-      Todo.where(id: params[:id]).each { |todo| todo.update!(status: 1) }
+      @todos.each { |todo| todo.update!(status: params[:completed].to_i.zero?) }
     end
     @valid = true
   rescue ActiveRecord::RecordInvalid
@@ -29,10 +30,10 @@ class Todo::StatusController < ApplicationController
     @valid = true
   end
 
-  def export_response
+  def export_response(data = 'OK')
     respond_to do |format|
       if @valid
-        format.json { render json: { data: 'OK' }, status: :ok }
+        format.json { render json: { data: data }, status: :ok }
       else
         format.json { render json: { data: 'FAIL' }, status: :unprocessable_entity }
       end

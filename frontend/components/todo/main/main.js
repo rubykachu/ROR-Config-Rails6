@@ -23,9 +23,11 @@ $(document).ready(function() {
 
   }).on("click", ".js-toggle-completed", function() {
     let $parent = $(this).closest("li"),
-        id      = $parent.data("id");
-    Todo.completed(id).done(function() {
-      $parent.toggleClass('completed');
+        id      = $parent.data("id"),
+        data    = $parent.data("completed");
+    Todo.completed(id, data).done(function(result) {
+      $parent.data("completed", result.data[0].status);
+      $parent.toggleClass('completed')
     });
   });
 });

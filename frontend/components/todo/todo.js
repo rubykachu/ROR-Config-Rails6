@@ -22,8 +22,12 @@ export const remove = id => {
   return request;
 };
 
-export const completed = id => {
-  let request = $.ajax({ method: "PUT", url: Routes.status_path(id) });
+export const completed = (id, data) => {
+  let request = $.ajax({
+    method: "PUT",
+    url: Routes.status_path(id),
+    data: { completed: data }
+  });
   _requestFail(request);
   return request;
 };
@@ -43,7 +47,7 @@ const _requestFail = request => {
 };
 
 const _template = item => {
-  return `<li data-id="${item.id}">
+  return `<li data-id="${item.id}" data-completed="${item.status}">
     <div class="view">
       <input class="toggle js-toggle-completed" type="checkbox">
       <label class="js-label-item">${item.content}</label>

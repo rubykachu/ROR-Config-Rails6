@@ -1,7 +1,8 @@
-- completed = item.status.zero? ? '' : 'completed'
-li data-id="#{item.id}" class="#{completed}"
+- completed = item.status.zero? ? nil : 'completed'
+- checked = item.status.zero? ? nil : true
+li data-id="#{item.id}" class="#{completed}" data-completed="#{item.status}"
   .view
-    input.toggle.js-toggle-completed type="checkbox"
+    = check_box_tag :toggle, item.status, checked, class: 'toggle js-toggle-completed'
     = label_tag nil, item.content, class: 'js-label-item'
     button.destroy.js-destroy-item
   = text_field_tag :item, item.content, class: 'edit js-edit-item'
