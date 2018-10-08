@@ -1,5 +1,5 @@
 import "./main.css";
-import * as Fn from "./function";
+import * as Todo from "components/todo/todo";
 
 $(document).ready(function() {
   $(document).on("dblclick", ".js-label-item", function() {
@@ -7,24 +7,24 @@ $(document).ready(function() {
 
   }).on("change", ".js-edit-item", function() {
     let $parent = $(this).parent("li"),
-        value = $(this).val(),
-        url = $parent.data("url");
+        value   = $(this).val(),
+        id      = $parent.data("id");
 
     $parent.removeClass("editing");
     $parent.find(".js-label-item").html(value);
-    Fn.updateTodo(value, url);
+    Todo.update(value, id);
 
   }).on("click", ".js-destroy-item", function() {
     let $parent = $(this).closest("li"),
-        url = $parent.data("url");
-    Fn.deleteTodo(url).done(function() {
+        id      = $parent.data("id");
+    Todo.remove(id).done(function() {
       $parent.remove();
     });
 
-  }).on("click", ".js-toggle-status", function() {
+  }).on("click", ".js-toggle-completed", function() {
     let $parent = $(this).closest("li"),
-        url = $parent.data("url-status");
-    Fn.updateCompletedTodo(url).done(function() {
+        id      = $parent.data("id");
+    Todo.completed(id).done(function() {
       $parent.toggleClass('completed');
     });
   });

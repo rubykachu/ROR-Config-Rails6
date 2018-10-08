@@ -1,18 +1,15 @@
 import "./header.css";
-import { appendTodoItem } from "components/todo/main/function";
+import { append } from "components/todo/todo";
 
 $(document).ready(function() {
   const $input = $(".js-input-new-todo");
 
   $(".js-form-new-todo")
     .on("ajax:before", function() {
-      if (!$input.val().length) {
-        return false;
-      }
+      if (!$input.val().length) return false;
     })
     .on("ajax:success", function(result) {
       $input.val("");
-      appendTodoItem(result.detail[0].data);
+      append(result.detail[0].data);
     });
-  console.log(Routes.edit_todo_path(1));
 });

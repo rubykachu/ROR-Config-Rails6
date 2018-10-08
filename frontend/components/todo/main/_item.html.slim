@@ -1,6 +1,7 @@
-li data-id="#{item.id}" data-url="#{todo_path(item.id)}" data-url-status="#{status_path(item.id)}"
+- completed = item.status.zero? ? '' : 'completed'
+li data-id="#{item.id}" class="#{completed}"
   .view
-    input.toggle.js-toggle-status type="checkbox"
+    input.toggle.js-toggle-completed type="checkbox"
     = label_tag nil, item.content, class: 'js-label-item'
     button.destroy.js-destroy-item
   = text_field_tag :item, item.content, class: 'edit js-edit-item'
