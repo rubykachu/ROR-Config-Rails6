@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'todos#index'
-  resources :todos do
-    collection { resources :status, only: :update, controller: 'todo/status' }
+  resources :todos
+  namespace :todo do
+    resource :statuses, only: [:update, :destroy]
   end
 end

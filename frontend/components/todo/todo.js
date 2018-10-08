@@ -17,7 +17,11 @@ export const update = (value, id) => {
 };
 
 export const remove = id => {
-  let request = $.ajax({ method: "DELETE", url: Routes.todo_path(id) });
+  let request = $.ajax({
+    method: "DELETE",
+    url: Routes.todo_statuses_path(),
+    data: { ids: id }
+  });
   _requestFail(request);
   return request;
 };
@@ -25,17 +29,29 @@ export const remove = id => {
 export const completed = (id, data) => {
   let request = $.ajax({
     method: "PUT",
-    url: Routes.status_path(id),
-    data: { completed: data }
+    url: Routes.todo_statuses_path(),
+    data: { ids: id, completed: data }
   });
   _requestFail(request);
   return request;
 };
 
 export const clearCompleted = ids => {
-  // let request = $.ajax({ method: "PUT", url: Routes.status_path(id) });
-  // _requestFail(request);
-  // return request;
+  let request = $.ajax({
+    method: "DELETE",
+    url: Routes.todo_statuses_path(),
+    data: { ids: ids }
+  });
+  _requestFail(request);
+  return request;
+};
+
+export const listID = () => {
+  let id = []
+  $('.js-todo-list li').each(function() {
+    id.push($(this).data('id'));
+  });
+  return id;
 };
 
 // PRIVATE FUNCTIONS

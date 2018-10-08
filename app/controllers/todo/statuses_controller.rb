@@ -1,20 +1,23 @@
-class Todo::StatusController < ApplicationController
+class Todo::StatusesController < ApplicationController
   def update
     batch_update_status
-    export_response(@todos.reload.as_json)
+    export_response(todos.reload.as_json)
   end
 
   def destroy
     batch_destroy
-    export_response
+    export_response(todos.pluck(:id))
   end
 
   private
 
+  def todos
+    @todos ||= Todo.where(id: Array(params[:ids]))
+  end
+
   def batch_update_status
-    @todos = Todo.where(id: params[:id])
     ActiveRecord::Base.transaction do
-      @todos.each { |todo| todo.update!(status: params[:completed].to_i.zero?) }
+      todos.each { |todo| todo.update!(status: params[:completed].to_i.zero?) }
     end
     @valid = true
   rescue ActiveRecord::RecordInvalid
@@ -23,7 +26,7 @@ class Todo::StatusController < ApplicationController
 
   def batch_destroy
     ActiveRecord::Base.transaction do
-      Todo.where(id: params[:id]).each { |todo| todo.destroy! }
+      todos.each { |todo| todo.destroy! }
     end
     @valid = true
   rescue ActiveRecord::RecordInvalid

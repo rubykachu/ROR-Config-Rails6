@@ -6,6 +6,7 @@ const arrayID = () => {
   $('.js-todo-list').each(function() {
     id.push($(this).data('id'));
   });
+  return id;
 };
 
 $(document).ready(function() {
