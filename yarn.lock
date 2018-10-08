@@ -1408,9 +1408,9 @@ caniuse-api@^2.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000889"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000889.tgz#f6177927a0c56bbd56ff70f11e4bb28be3889052"
-  integrity sha512-Rf9Sbm2KS7s6Rk8iNeI5zJdquqctXBXAfy/bb1tCCYRds5RAaHNdyt2D4z8TSRToDkYsAwiSBV/bFHR+4IgTiw==
+  version "1.0.30000890"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000890.tgz#b406595db8b631975b8dc5fa174f32925c23778b"
+  integrity sha512-aO5uw1Taw8GkNMMXIWOz/WJz3y6tR1ETUAdH/pvO5EoJ3I1Po9vNJd9aMjY1GKucS/OXWMiQbXRbk3O1sgCbRA==
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844:
   version "1.0.30000889"
@@ -4605,6 +4605,11 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
+lodash.defaults@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
+  integrity sha1-0JF4cW/+pN3p5ft7N/bwgCJ0WAw=
+
 lodash.get@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-3.7.0.tgz#3ce68ae2c91683b281cc5394128303cbf75e691f"
@@ -6565,6 +6570,14 @@ quick-lru@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
   integrity sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
+
+rails-erb-loader@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/rails-erb-loader/-/rails-erb-loader-5.5.0.tgz#fcf698f693e6a3b9b86d0d657040c2bfd8b88e28"
+  integrity sha512-WUHdQdTo+Z9jkLGuG1py4y2fTSXCgPhqz5KY2OZXSRR2vJwpZ1LTRxkzitum0mfZz6vhwDZVBGxSWZ+zS+MKAw==
+  dependencies:
+    loader-utils "^1.1.0"
+    lodash.defaults "^4.2.0"
 
 rails-ujs@^5.2.1:
   version "5.2.1"

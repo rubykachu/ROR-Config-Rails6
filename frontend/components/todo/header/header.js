@@ -14,4 +14,5 @@ $(document).ready(function() {
       $input.val("");
       appendTodoItem(result.detail[0].data);
     });
+  console.log(Routes.edit_todo_path(1));
 });
