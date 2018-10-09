@@ -13,7 +13,6 @@ const removeItem = result => {
 
 const resetSelected = element => {
   $('.js-filters a').removeClass('selected');
-  console.log(element);
   element.addClass('selected');
 };
 

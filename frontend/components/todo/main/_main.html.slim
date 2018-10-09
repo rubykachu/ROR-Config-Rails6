@@ -1,5 +1,6 @@
+- checked = todos.map(&:status).all?(1)
 section#main
-  input#toggle-all type="checkbox"
+  = check_box_tag :toogle_all, nil, checked, id: 'toggle-all', class: 'js-toggle-all-completed'
   label for="toggle-all"  Mark all as complete
   ul#todo-list.js-todo-list
     = render partial: 'components/todo/main/item', collection: todos

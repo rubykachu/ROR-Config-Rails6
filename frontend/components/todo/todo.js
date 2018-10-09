@@ -26,16 +26,6 @@ export const remove = id => {
   return request;
 };
 
-export const completed = (id, data) => {
-  let request = $.ajax({
-    method: "PUT",
-    url: Routes.todo_statuses_path(),
-    data: { ids: id, completed: data }
-  });
-  _requestFail(request);
-  return request;
-};
-
 export const clearCompleted = listItem => {
   let request = $.ajax({
     method: "DELETE",
@@ -46,17 +36,25 @@ export const clearCompleted = listItem => {
   return request;
 };
 
-export const idsCompleted = () => {
-  let items = []
-  $('.js-todo-list li.completed').each(function() {
-    let id           = $(this).data('id'),
-        is_completed = parseInt( $(this).data('completed') ) == 1;
-    if (is_completed) items.push(id);
+export const completed = (id, data) => {
+  let request = $.ajax({
+    method: "PUT",
+    url: Routes.todo_statuses_path(),
+    data: { ids: id, completed: data }
   });
-  return items;
+  _requestFail(request);
+  return request;
 };
 
-// PRIVATE FUNCTIONS
+export const idsCompleted = () => {
+  return _fetchIDs( $('.js-todo-list li.completed') );
+};
+
+export const idsNotComplete = () => {
+  return _fetchIDs( $('.js-todo-list li:not(.completed)') );
+};
+
+// ========== PRIVATE FUNCTIONS
 
 const _requestFail = request => {
   request.fail(function(jqXHR, textStatus) {
@@ -74,3 +72,11 @@ const _template = item => {
     <input class="edit js-edit-item" value="${item.content}">
   </li>`;
 };
+
+const _fetchIDs = element => {
+  let ids = []
+  element.each(function() {
+    ids.push( $(this).data('id') );
+  });
+  return ids;
+}

@@ -17,6 +17,8 @@ class Todo::StatusesController < ApplicationController
 
   def batch_update_status
     ActiveRecord::Base.transaction do
+      # 1: Finish
+      # 0: Unfinish
       todos.each { |todo| todo.update!(status: params[:completed].to_i.zero?) }
     end
     @valid = true
