@@ -13,6 +13,7 @@ const removeItem = result => {
 
 const resetSelected = element => {
   $('.js-filters a').removeClass('selected');
+  console.log(element);
   element.addClass('selected');
 };
 
@@ -29,17 +30,16 @@ const showActive = element => {
 };
 
 const showAll = element => {
-  resetSelected( $(this) );
+  resetSelected( element );
   $('.js-todo-list li').show();
 };
 
 const showByUrl = () => {
-  let query = window.location.search;
   if ( stateUrl('completed') ) {
     showCompleted( $('.js-completed') );
-  }else if ( stateUrl('active') ) {
+  } else if ( stateUrl('active') ) {
     showActive( $('.js-active') );
-  }else {
+  } else {
     showAll( $('.js-all') );
   }
 };
@@ -56,16 +56,13 @@ $(document).ready(function() {
 
   $('.js-completed').on('click', function() {
     showCompleted( $(this) );
-
   });
 
   $('.js-active').on('click', function() {
     showActive( $(this) );
-
   });
 
   $('.js-all').on('click', function() {
     showAll( $(this));
-
   });
 });
