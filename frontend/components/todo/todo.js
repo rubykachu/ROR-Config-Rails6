@@ -36,22 +36,24 @@ export const completed = (id, data) => {
   return request;
 };
 
-export const clearCompleted = ids => {
+export const clearCompleted = listItem => {
   let request = $.ajax({
     method: "DELETE",
     url: Routes.todo_statuses_path(),
-    data: { ids: ids }
+    data: { ids: listItem }
   });
   _requestFail(request);
   return request;
 };
 
-export const listID = () => {
-  let id = []
-  $('.js-todo-list li').each(function() {
-    id.push($(this).data('id'));
+export const idsCompleted = () => {
+  let items = []
+  $('.js-todo-list li.completed').each(function() {
+    let id           = $(this).data('id'),
+        is_completed = parseInt( $(this).data('completed') ) == 1;
+    if (is_completed) items.push(id);
   });
-  return id;
+  return items;
 };
 
 // PRIVATE FUNCTIONS
