@@ -18,6 +18,8 @@ const unCompleteAll = () => {
   Todo.completed( ids, 1 );
 }
 
+
+
 $(document).ready(function() {
   $(document).on("dblclick", ".js-label-item", function() {
     $(this).closest("li").addClass("editing").children('.js-edit-item').focus();
@@ -46,6 +48,9 @@ $(document).ready(function() {
       $parent.data("completed", result.data[0].status);
       $parent.toggleClass("completed");
     });
+
+    // let toggleChecked = $(".js-todo-list li.completed").length === $(".js-todo-list li").length;
+    // $(".js-toggle-all-completed").prop("checked", toggleChecked)
 
   }).on("click", ".js-toggle-all-completed", function() {
     let $this = $(this);
